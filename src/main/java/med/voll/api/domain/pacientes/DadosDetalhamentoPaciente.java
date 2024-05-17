@@ -1,7 +1,6 @@
-package med.voll.api.pacientes;
+package med.voll.api.domain.pacientes;
 
-import med.voll.api.endereco.Endereco;
-import med.voll.api.medico.Especialidade;
+import med.voll.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente (
         Long id,
