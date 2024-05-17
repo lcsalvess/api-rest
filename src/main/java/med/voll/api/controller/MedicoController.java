@@ -34,7 +34,7 @@ public class MedicoController {
     //inserir ",desc"
     @GetMapping
     public Page<DadosListagemMedico> listaMedicos(@PageableDefault(size=10, sort = {"nome"}) Pageable pageable) {
-        return repository.findAll(pageable)
+        return repository.findAllByAtivoTrue(pageable)
                 .map(DadosListagemMedico::new);
     }
 
@@ -43,5 +43,14 @@ public class MedicoController {
     public void atualizarDados(@RequestBody @Valid DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    @Transactional
+    public void deletar(@PathVariable Long id) {
+//        para deletar o registro do banco de dados
+//        repository.deleteById(id);
+        var medico = repository.getReferenceById(id);
+        medico.excluir();
     }
 }
