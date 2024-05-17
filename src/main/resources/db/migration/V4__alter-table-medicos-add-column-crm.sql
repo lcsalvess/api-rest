@@ -1,0 +1,1 @@
+alter table medicos add crm varchar(6) not null unique;
