@@ -16,7 +16,7 @@ public class Endereco {
     private String cep;
     private String cidade;
     private String uf;
-    private Integer numero;
+    private String numero;
     private String complemento;
 
     public Endereco(DadosEndereco dados) {
