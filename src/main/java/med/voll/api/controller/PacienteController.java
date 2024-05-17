@@ -10,6 +10,8 @@ import med.voll.api.pacientes.DadosListagemPaciente;
 import med.voll.api.pacientes.Paciente;
 import med.voll.api.pacientes.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,10 +31,8 @@ public class PacienteController {
     }
 
     @GetMapping
-    public List<DadosListagemPaciente> listaPacientes() {
-        return repository.findAll()
-                .stream()
-                .map(DadosListagemPaciente::new)
-                .toList();
+    public Page<DadosListagemPaciente> listaPacientes(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(DadosListagemPaciente::new);
     }
 }
