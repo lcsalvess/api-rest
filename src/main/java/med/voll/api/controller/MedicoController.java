@@ -8,6 +8,7 @@ import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,12 @@ public class MedicoController {
     //inserir "?size= numero de elementos desejado por pagina"
     // para ir para a próxima página, após o passo anterior
     //acrescentar no HTML "&page= numero da página"
+    //para ordenar por um elemento, colocar no HTML
+    //"?sort=elemento"
+    //ordenação por padrão CRESCENTE (ASC), para decrescente
+    //inserir ",desc"
     @GetMapping
-    public Page<DadosListagemMedico> listaMedicos(Pageable pageable) {
+    public Page<DadosListagemMedico> listaMedicos(@PageableDefault(size=10, sort = {"nome"}) Pageable pageable) {
         return repository.findAll(pageable)
                 .map(DadosListagemMedico::new);
     }
