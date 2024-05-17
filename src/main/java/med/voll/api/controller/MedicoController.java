@@ -1,10 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.medico.DadosCadastroMedico;
-import med.voll.api.medico.DadosListagemMedico;
-import med.voll.api.medico.Medico;
-import med.voll.api.medico.MedicoRepository;
+import med.voll.api.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,5 +36,12 @@ public class MedicoController {
     public Page<DadosListagemMedico> listaMedicos(@PageableDefault(size=10, sort = {"nome"}) Pageable pageable) {
         return repository.findAll(pageable)
                 .map(DadosListagemMedico::new);
+    }
+
+    @PutMapping("/atualizar")
+    @Transactional
+    public void atualizarDados(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
 }
