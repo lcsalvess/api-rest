@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class ValidadorTempoAgendamento {
 
-    public void validarHorarioAgendamento(DadosAgendamentoConsulta dados) {
+    public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.dataConsulta();
         var horarioAgora = LocalDateTime.now();
         var diferencaEmMinutos = Duration.between(horarioAgora, dataConsulta).toMinutes();

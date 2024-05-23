@@ -7,7 +7,7 @@ import med.voll.api.domain.medico.MedicoRepository;
 public class ValidadorMedicosInativos {
     private MedicoRepository medicoRepository;
 
-    public void medicoInativo(DadosAgendamentoConsulta dados) {
+    public void validar(DadosAgendamentoConsulta dados) {
         //se não tiver informado médico de preferência
         if (dados.idMedico() == null) {
             return;

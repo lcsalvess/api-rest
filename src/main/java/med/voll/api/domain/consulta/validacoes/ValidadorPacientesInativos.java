@@ -7,7 +7,7 @@ import med.voll.api.domain.pacientes.PacienteRepository;
 public class ValidadorPacientesInativos {
     private PacienteRepository pacienteRepository;
 
-    public void pacienteInativo(DadosAgendamentoConsulta dados) {
+    public void validar(DadosAgendamentoConsulta dados) {
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var ativo = paciente.getAtivo();
         if (!ativo) {

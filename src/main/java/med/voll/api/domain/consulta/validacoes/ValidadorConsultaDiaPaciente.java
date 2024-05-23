@@ -8,7 +8,7 @@ public class ValidadorConsultaDiaPaciente {
 
     private ConsultaRepository consultaRepository;
 
-    public ValidadorConsultaDiaPaciente(DadosAgendamentoConsulta dados) {
+    public void validar(DadosAgendamentoConsulta dados) {
         var primeiroHorario = dados.dataConsulta().withHour(7);
         var ultimoHorario = dados.dataConsulta().withHour(18);
         var pacientePossuiOutraConsulta = consultaRepository.existsByPacienteIdAndDataConsultaBetween(dados.idPaciente(), primeiroHorario, ultimoHorario);
