@@ -28,6 +28,8 @@ public class SecurityConfiguration {
                         (SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/login").permitAll();
+                    req.requestMatchers("/v3/api-docs/**",
+                            "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     //qualquer outra requisição tem que estar autenticado
                     req.anyRequest().authenticated();
                 })
