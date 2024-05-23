@@ -20,10 +20,10 @@ and
 m.id not in(
 select c.medico.id from Consulta c
 where
-c.dataConsulta = :dataConsulta
+c.dataConsulta = :data
 )
 order by rand()
 limit 1
 """)
-    Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime localDateTime);
+    Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
 }
